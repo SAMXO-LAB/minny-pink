@@ -63,3 +63,8 @@ src/
 Canvas particles with pre-rendered sprites, GPU transforms, lazy images, fewer particles on phones/low-end
 devices, `prefers-reduced-motion` respected (static background, no bounce/typing animation), keyboard-friendly
 modals, custom cursor only on desktop mice.
+
+## Opening cake screen
+The site now opens with her birthday cake photo (`public/photos/cake-intro.jpg`) and the song
+"Stargirl Interlude" (`public/audio/stargirl-interlude.mp3`). Browsers need one tap before sound can play,
+so she sees "Tap to play 🎵" (if autoplay is blocked), then "Continue →" to enter the original opening. Code: `src/components/CakeIntro.tsx`.

@@ -7,6 +7,7 @@ import ParticleBackground from "./ParticleBackground";
 import CursorFX from "./CursorFX";
 import MusicPlayer from "./MusicPlayer";
 import Landing from "./Landing";
+import CakeIntro from "./CakeIntro";
 import Navigation from "./Navigation";
 import BirthdayHero from "./BirthdayHero";
 import { lockScroll, unlockScroll } from "@/lib/scroll";
@@ -23,7 +24,7 @@ import Guestbook from "./Guestbook";
 import FinalSurprise from "./FinalSurprise";
 
 export default function BirthdayApp() {
-  const [phase, setPhase] = useState<"landing" | "world">("landing");
+  const [phase, setPhase] = useState<"cake" | "landing" | "world">("cake");
   const [showWorld, setShowWorld] = useState(false);
   const [runKey, setRunKey] = useState(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -31,7 +32,7 @@ export default function BirthdayApp() {
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
   useEffect(() => {
-    if (phase !== "landing") return;
+    if (phase === "world") return;
     lockScroll();
     return () => unlockScroll();
   }, [phase]);
@@ -69,7 +70,10 @@ export default function BirthdayApp() {
           <CursorFX />
           <MusicPlayer />
 
-          <AnimatePresence>{phase === "landing" && <Landing key={`landing-${runKey}`} onEnter={enter} />}</AnimatePresence>
+          <AnimatePresence mode="wait">
+            {phase === "cake" && <CakeIntro key="cake" onContinue={() => setPhase("landing")} />}
+            {phase === "landing" && <Landing key={`landing-${runKey}`} onEnter={enter} />}
+          </AnimatePresence>
 
           {showWorld && (
             <motion.main
