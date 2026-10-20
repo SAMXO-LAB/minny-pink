@@ -40,7 +40,7 @@ export default function CursorFX() {
 
   if (!env.finePointer) return null;
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[99]" style={{ opacity: seen ? 1 : 0 }}>
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[200]" style={{ opacity: seen ? 1 : 0 }}>
       <motion.div
         className="absolute left-0 top-0 rounded-full"
         style={{
